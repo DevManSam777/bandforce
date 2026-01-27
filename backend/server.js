@@ -44,12 +44,12 @@ app.get('/api/config/paypal', (req, res) => res.send({
 // Images are now hosted on Cloudinary, no local uploads folder needed
 
 if(process.env.NODE_ENV === 'production') {
-    // set static folder
-    app.use(express.static(path.join(__dirname, '/frontend/build')));
+    // set static folder (go up one level from backend to project root)
+    app.use(express.static(path.join(__dirname, '../frontend/build')));
 
     // any route that is not api will be redirected to index.html
     app.get('*', (req, res) => 
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+        res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
     );
 } else {
     app.get('/', (req, res) => {
