@@ -4,13 +4,13 @@ import { FaCheckCircle, FaTruck, FaShieldAlt, FaUsers } from 'react-icons/fa';
 const AboutScreen = () => {
   return (
     <>
-      <Meta title="About ProShop - Premium eCommerce" description="Learn about ProShop and our commitment to quality" />
+      <Meta title="About BandForce - Premium eCommerce" description="Learn about BandForce and our commitment to quality" />
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <div className="mb-12">
-          <h1 className="text-5xl font-bold text-slate-900 mb-4">About ProShop</h1>
+          <h1 className="text-5xl font-bold text-slate-900 mb-4">About BandForce</h1>
           <p className="text-xl text-gray-600">
-            Your trusted destination for quality products and exceptional service.
+            Strength in Every Stretch - Premium Resistance Bands for Serious Athletes.
           </p>
         </div>
 
@@ -18,34 +18,34 @@ const AboutScreen = () => {
         <section className="mb-16 bg-blue-50 rounded-lg p-8 border border-blue-200">
           <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Mission</h2>
           <p className="text-gray-700 leading-relaxed">
-            At ProShop, we believe that shopping should be easy, affordable, and enjoyable. Our mission is to provide customers with access to high-quality products at competitive prices, backed by exceptional customer service and fast, reliable shipping.
+            BandForce is dedicated to making professional-grade resistance training equipment accessible to everyone. Since 2020, we've been committed to empowering athletes, fitness enthusiasts, and rehabilitation professionals with durable, high-quality resistance bands that deliver real results. We believe strength training should be affordable, portable, and effective.
           </p>
         </section>
 
         {/* Values Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">Our Values</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-8">Our Core Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 icon: FaCheckCircle,
-                title: 'Quality',
-                description: 'We are committed to offering only the highest quality products from trusted brands.'
+                title: 'Premium Materials',
+                description: 'Latex-free TPE rubber bands engineered for durability, safety, and consistent performance across all resistance levels.'
               },
               {
                 icon: FaUsers,
-                title: 'Customer Focus',
-                description: 'Our customers are at the heart of everything we do. Your satisfaction is our priority.'
+                title: 'Athlete-Focused',
+                description: 'Designed by and for serious athletes. Every product is tested by professional trainers and strength coaches.'
               },
               {
                 icon: FaTruck,
-                title: 'Reliability',
-                description: 'We deliver on our promises - fast shipping, accurate orders, and transparent communication.'
+                title: 'Fast Shipping',
+                description: 'Get your bands within 2-3 business days. We know you\'re eager to hit your training goals.'
               },
               {
                 icon: FaShieldAlt,
-                title: 'Trust & Safety',
-                description: 'Your data and transactions are protected with industry-leading security measures.'
+                title: 'Lifetime Warranty',
+                description: 'We stand behind our products with a lifetime warranty. If it breaks, we\'ll replace it.'
               }
             ].map((value, index) => {
               const IconComponent = value.icon;
@@ -66,16 +66,16 @@ const AboutScreen = () => {
 
         {/* Why Choose Us */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">Why Choose ProShop?</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-8">Why Choose BandForce?</h2>
           <ul className="space-y-4">
             {[
-              'Wide selection of quality products across multiple categories',
-              'Competitive pricing with regular deals and promotions',
-              'Fast and reliable shipping to all corners of the country',
-              'Secure checkout with multiple payment options',
-              'Hassle-free returns and customer support',
-              'User-friendly shopping experience',
-              'Detailed product information and customer reviews'
+              'Professional-grade resistance bands used by elite athletes and coaches',
+              '7 resistance levels (Light to Maximum) for all fitness levels',
+              'Latex-free TPE rubber - safe for people with allergies',
+              'Portable and versatile - perfect for home, gym, or travel training',
+              'Includes comprehensive workout guides for every resistance level',
+              'Expert customer support from certified fitness professionals',
+              'Lifetime warranty on all individual bands and sets'
             ].map((reason, index) => (
               <li key={index} className="flex items-center gap-3 text-gray-700">
                 <FaCheckCircle className="text-green-600 flex-shrink-0" />
@@ -92,7 +92,7 @@ const AboutScreen = () => {
             Have questions or feedback? We'd love to hear from you!
           </p>
           <a
-            href="mailto:support@proshop.com"
+            href="mailto:support@bandforce.com"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition"
           >
             Contact Us

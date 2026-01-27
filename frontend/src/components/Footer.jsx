@@ -1,3 +1,6 @@
+import logo from '../assets/images/logo.png';
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -8,9 +11,12 @@ const Footer = () => {
         <div className="grid grid-cols-2 sm:flex sm:flex-row sm:justify-between sm:items-start gap-6 sm:gap-12 mb-8">
           {/* Brand Section */}
           <div className="col-span-2 sm:col-span-1 sm:flex-shrink-0">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">ProShop</h3>
+            <Link to="/" className="flex items-center gap-3 mb-4">
+              <img src={logo} alt="BandForce" className="h-12 w-12" />
+              <h3 className="text-lg font-bold text-gray-900">BandForce</h3>
+            </Link>
             <p className="text-xs sm:text-sm text-gray-600 max-w-xs">
-              Your trusted destination for quality products and exceptional service.
+              Your trusted destination for quality resistance bands and exceptional service.
             </p>
           </div>
 
@@ -30,7 +36,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="/faq" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">FAQs</a></li>
               <li><a href="/shipping-info" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">Shipping</a></li>
-              <li><a href="mailto:support@proshop.com" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">Contact</a></li>
+              <li><a href="mailto:support@bandforce.com" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">Contact</a></li>
             </ul>
           </div>
 
@@ -48,7 +54,7 @@ const Footer = () => {
         {/* Divider & Copyright */}
         <div className="border-t border-gray-200 pt-6">
           <p className="text-center text-gray-600 text-xs sm:text-sm">
-            &copy; {currentYear} ProShop. All Rights Reserved.
+            &copy; {currentYear} BandForce. All Rights Reserved.
           </p>
         </div>
       </div>

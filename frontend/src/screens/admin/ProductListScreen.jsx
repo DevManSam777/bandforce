@@ -1,11 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
-import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import {
   useGetProductsQuery,
   useCreateProductMutation,
   useDeleteProductMutation,
+  useUpdateProductPositionMutation,
 } from '../../slices/productsApiSlice';
 import { toast } from 'react-toastify';
 import Paginate from '../../components/Paginate';
@@ -15,6 +16,7 @@ const ProductListScreen = () => {
   const { data, isLoading, error, refetch } = useGetProductsQuery({ pageNumber });
   const [createProduct, { isLoading: loadingCreate }] = useCreateProductMutation();
   const [deleteProduct, { isLoading: loadingDelete }] = useDeleteProductMutation();
+  const [updatePosition, { isLoading: loadingPosition }] = useUpdateProductPositionMutation();
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
@@ -37,6 +39,16 @@ const ProductListScreen = () => {
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
+    }
+  };
+
+  const handleMovePosition = async (productId, direction) => {
+    try {
+      await updatePosition({ productId, direction }).unwrap();
+      refetch();
+      toast.success(`Product moved ${direction}`);
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -84,6 +96,22 @@ const ProductListScreen = () => {
                     </td>
                     <td className="px-1 sm:px-2 md:px-4 py-2 sm:py-3 text-center">
                       <div className="flex gap-0.5 sm:gap-1 md:gap-2 justify-center flex-wrap">
+                        <button
+                          onClick={() => handleMovePosition(product._id, 'up')}
+                          disabled={loadingPosition}
+                          className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white rounded transition font-semibold text-xs"
+                          title="Move up"
+                        >
+                          <FaArrowUp size={12} />
+                        </button>
+                        <button
+                          onClick={() => handleMovePosition(product._id, 'down')}
+                          disabled={loadingPosition}
+                          className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white rounded transition font-semibold text-xs"
+                          title="Move down"
+                        >
+                          <FaArrowDown size={12} />
+                        </button>
                         <Link
                           to={`/admin/product/${product._id}/edit`}
                           className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition font-semibold text-xs"

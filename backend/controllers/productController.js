@@ -13,7 +13,7 @@ const getProducts = asyncHandler(async (req, res) => {
 
   const count = await Product.countDocuments({...keyword});
 
-  let products = await Product.find({...keyword}).populate('category', 'name').limit(pageSize).skip(pageSize * (page - 1));
+  let products = await Product.find({...keyword}).populate('category', 'name').sort({ position: 1 }).limit(pageSize).skip(pageSize * (page - 1));
   
   // Initialize positions if they don't exist or are all the same (only on first page)
   if (page === 1) {
@@ -25,7 +25,7 @@ const getProducts = asyncHandler(async (req, res) => {
         prod.position = index;
         return prod.save();
       }));
-      products = await Product.find({...keyword}).populate('category', 'name').limit(pageSize).skip(pageSize * (page - 1));
+      products = await Product.find({...keyword}).populate('category', 'name').sort({ position: 1 }).limit(pageSize).skip(pageSize * (page - 1));
     }
   }
   

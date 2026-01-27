@@ -3,7 +3,7 @@ import Meta from '../components/Meta';
 const PrivacyScreen = () => {
   return (
     <>
-      <Meta title="Privacy Policy - ProShop" description="Privacy policy" />
+      <Meta title="Privacy Policy - BandForce" description="Privacy policy" />
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-slate-900 mb-8">Privacy Policy</h1>
 
@@ -11,7 +11,7 @@ const PrivacyScreen = () => {
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-3">1. Introduction</h2>
             <p>
-              ProShop ("we", "us", "our", or "Company") operates this website. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
+              BandForce ("we", "us", "our", or "Company") operates this website. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
             </p>
           </section>
 
@@ -29,7 +29,7 @@ const PrivacyScreen = () => {
 
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-3">3. Use of Data</h2>
-            <p>ProShop uses the collected data for various purposes:</p>
+            <p>BandForce uses the collected data for various purposes:</p>
             <ul className="list-disc list-inside space-y-2 mt-3">
               <li>To provide and maintain our Service</li>
               <li>To notify you about changes to our Service</li>
@@ -73,8 +73,8 @@ const PrivacyScreen = () => {
             <h2 className="text-2xl font-bold text-slate-900 mb-3">8. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us at{' '}
-              <a href="mailto:support@proshop.com" className="text-blue-600 hover:underline font-semibold">
-                support@proshop.com
+              <a href="mailto:support@bandforce.com" className="text-blue-600 hover:underline font-semibold">
+                support@bandforce.com
               </a>
             </p>
           </section>

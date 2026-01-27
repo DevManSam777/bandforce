@@ -1,6 +1,6 @@
-# ProShop
+# BandForce
 
-A modern, fully-featured eCommerce platform with admin dashboard, built with the MERN stack. Production-ready with comprehensive features for managing products, orders, users, and dynamic tax rates.
+A premium eCommerce platform for resistance bands and fitness accessories, built with the MERN stack. Production-ready with comprehensive features for managing products, orders, users, and dynamic tax rates.
 
 ## Features
 
@@ -59,7 +59,7 @@ A modern, fully-featured eCommerce platform with admin dashboard, built with the
 1. **Clone and install dependencies:**
 ```bash
 git clone <repo-url>
-cd proshop-v2
+cd bandforce
 npm install
 ```
 
@@ -69,7 +69,7 @@ Create a `.env` file in the root directory with:
 
 ```
 # Database
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/proshop
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/bandforce
 
 # JWT
 JWT_SECRET=your_jwt_secret_key
@@ -127,7 +127,7 @@ cd backend && npm start
 ## Project Structure
 
 ```
-proshop-v2/
+bandforce/
 ├── backend/
 │   ├── models/          # MongoDB models
 │   ├── controllers/     # Route controllers

@@ -43,7 +43,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Meta title="Welcome to ProShop" description="Shop the best electronics" keywords="electronics, shop" />
+      <Meta title="Welcome to BandForce" description="Shop the best electronics" keywords="electronics, shop" />
       {!keyword ? (
         <ProductCarousel />
       ) : (

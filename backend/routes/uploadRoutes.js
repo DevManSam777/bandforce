@@ -17,7 +17,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'proshop',
+    folder: 'bandforce',
     allowed_formats: ['jpeg', 'jpg', 'png', 'webp'],
     resource_type: 'auto',
   },
