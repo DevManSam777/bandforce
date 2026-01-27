@@ -33,7 +33,7 @@ const OrderScreen = () => {
       });
       paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
     }
-  }, [order?.isPaid, paypal?.clientId, paypalDispatch, loadingPayPal, errorPayPal]);
+  }, [order, order?.isPaid, paypal?.clientId, paypalDispatch, loadingPayPal, errorPayPal]);
 
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {

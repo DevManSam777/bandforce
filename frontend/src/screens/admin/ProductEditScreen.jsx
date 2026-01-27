@@ -65,7 +65,7 @@ const ProductEditScreen = () => {
     };
 
     try {
-      const result = await updateProduct(updatedProduct).unwrap();
+      await updateProduct(updatedProduct).unwrap();
       toast.success('Product updated');
       navigate('/admin/productlist');
     } catch (err) {
