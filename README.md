@@ -1,6 +1,6 @@
 # BandForce
 
-A premium eCommerce platform for resistance bands and fitness accessories, built with the MERN stack. Production-ready with comprehensive features for managing products, orders, users, and dynamic tax rates.
+An eCommerce platform for resistance bands and fitness accessories, built with the MERN stack. Production-ready with comprehensive features for managing products, orders, users, and dynamic tax rates.
 
 ## Features
 
