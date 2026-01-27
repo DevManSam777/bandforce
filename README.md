@@ -4,23 +4,9 @@ Premium resistance bands and fitness accessories for serious athletes and fitnes
 
 ## About BandForce
 
-BandForce is a full-featured eCommerce platform specializing in high-quality resistance bands and workout accessories. We offer everything you need for strength training, recovery, and athletic performance.
+BandForce is a full-featured eCommerce platform specializing in high-quality resistance bands and workout accessories.
 
 **Visit us:** https://bandforce.fly.dev
-
-## What We Offer
-
-### Products
-- Resistance bands in multiple resistance levels
-- Fitness accessories and equipment
-- Expert product recommendations
-- Fast, reliable shipping throughout the US
-
-### Customer Service
-- Comprehensive FAQ section
-- Detailed shipping information
-- 30-day money-back guarantee
-- Responsive support team
 
 ## Technology
 
@@ -33,16 +19,16 @@ BandForce is built with modern, production-ready technology:
 
 ## Features
 
-- 🛍️ Complete eCommerce experience with product browsing and search
-- 🛒 Persistent shopping cart
-- 👤 User authentication and profile management
-- 📦 Real-time order tracking
-- 💳 Secure PayPal checkout
-- 📱 Mobile-responsive design
-- 🖼️ High-quality product images
-- 🏪 Organized product categories
-- 🚚 Dynamic shipping and tax calculation
-- 📊 Admin dashboard for store management
+- Complete eCommerce experience with product browsing and search
+- Persistent shopping cart
+- User authentication and profile management
+- Real-time order tracking
+- Secure PayPal checkout
+- Mobile-responsive design
+- High-quality product images
+- Organized product categories
+- Dynamic shipping and tax calculation
+- Admin dashboard for store management
 
 ## Shop
 
