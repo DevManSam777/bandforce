@@ -44,7 +44,7 @@ const FAQScreen = () => {
     {
       id: 8,
       question: 'Do you ship internationally?',
-      answer: 'Currently, we only ship within the United States. International customers can contact us at support@bandforce.com to inquire about future expansion.'
+      answer: 'Currently, we only ship within the United States. International customers can contact us at support@bandforce.fly.dev to inquire about future expansion.'
     },
     {
       id: 9,
@@ -94,8 +94,8 @@ const FAQScreen = () => {
           <h2 className="text-xl font-bold text-slate-900 mb-2">Didn't find your answer?</h2>
           <p className="text-gray-700">
             Contact us at{' '}
-            <a href="mailto:support@bandforce.com" className="text-blue-600 hover:underline font-semibold">
-              support@bandforce.com
+            <a href="mailto:support@bandforce.fly.dev" className="text-blue-600 hover:underline font-semibold">
+            support@bandforce.fly.dev
             </a>
             {' '}and we'll be happy to help.
           </p>

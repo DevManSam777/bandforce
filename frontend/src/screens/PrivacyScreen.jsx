@@ -73,8 +73,8 @@ const PrivacyScreen = () => {
             <h2 className="text-2xl font-bold text-slate-900 mb-3">8. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us at{' '}
-              <a href="mailto:support@bandforce.com" className="text-blue-600 hover:underline font-semibold">
-                support@bandforce.com
+              <a href="mailto:support@bandforce.fly.dev" className="text-blue-600 hover:underline font-semibold">
+              support@bandforce.fly.dev
               </a>
             </p>
           </section>

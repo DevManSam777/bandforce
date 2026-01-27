@@ -36,7 +36,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="/faq" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">FAQs</a></li>
               <li><a href="/shipping-info" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">Shipping</a></li>
-              <li><a href="mailto:support@bandforce.com" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">Contact</a></li>
+              <li><a href="mailto:support@bandforce.fly.dev" className="text-xs sm:text-sm text-gray-600 hover:text-blue-600 transition">Contact</a></li>
             </ul>
           </div>
 

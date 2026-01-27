@@ -49,8 +49,8 @@ const ShippingInfoScreen = () => {
                   </p>
                   <p className="text-gray-700">
                     If your package arrives damaged, please contact our support team immediately at{' '}
-                    <a href="mailto:support@bandforce.com" className="text-blue-600 hover:underline font-semibold">
-                      support@bandforce.com
+                    <a href="mailto:support@bandforce.fly.dev" className="text-blue-600 hover:underline font-semibold">
+                    support@bandforce.fly.dev
                     </a>
                   </p>
                 </div>
@@ -72,8 +72,8 @@ const ShippingInfoScreen = () => {
                     </p>
                     <p className="text-gray-700">
                       To initiate a return, contact our support team at{' '}
-                      <a href="mailto:support@bandforce.com" className="text-blue-600 hover:underline font-semibold">
-                        support@bandforce.com
+                      <a href="mailto:support@bandforce.fly.dev" className="text-blue-600 hover:underline font-semibold">
+                      support@bandforce.fly.dev
                       </a>
                     </p>
                   </div>
@@ -112,8 +112,8 @@ const ShippingInfoScreen = () => {
             <h2 className="text-2xl font-bold text-slate-900 mb-3">Need Help?</h2>
             <p className="text-gray-700">
               If you have any questions about shipping or tracking your order, please contact us at{' '}
-              <a href="mailto:support@bandforce.com" className="text-blue-600 hover:underline font-semibold">
-                support@bandforce.com
+              <a href="mailto:support@bandforce.fly.dev" className="text-blue-600 hover:underline font-semibold">
+              support@bandforce.fly.dev
               </a>
             </p>
           </section>

@@ -92,7 +92,7 @@ const AboutScreen = () => {
             Have questions or feedback? We'd love to hear from you!
           </p>
           <a
-            href="mailto:support@bandforce.com"
+            href="mailto:support@bandforce.fly.dev"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition"
           >
             Contact Us
