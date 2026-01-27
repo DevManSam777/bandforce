@@ -1,106 +1,102 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { useUpdateUserMutation, useGetUserDetailsQuery } from "../../slices/usersApiSlice";
-
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import FormContainer from '../../components/FormContainer';
+import FormInput from '../../components/FormInput';
+import { toast } from 'react-toastify';
+import { useUpdateUserMutation, useGetUserDetailsQuery } from '../../slices/usersApiSlice';
 
 const UserEditScreen = () => {
-    const { id: userId } = useParams();
+  const { id: userId } = useParams();
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false);
-    
-    const { 
-        data: user, 
-        isLoading, 
-        refetch, 
-        error,
-    } = useGetUserDetailsQuery(userId);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
 
+  const { data: user, isLoading, refetch, error } = useGetUserDetailsQuery(userId);
+  const [updateUser, { isLoading: loadingUpdate }] = useUpdateUserMutation();
 
-    const [updateUser, { isLoading: loadingUpdate}] = useUpdateUserMutation();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setIsAdmin(user.isAdmin);
+    }
+  }, [user]);
 
-    useEffect(() => {
-        if(user) {
-            setName(user.name);
-            setEmail(user.email);
-            setIsAdmin(user.isAdmin);
-        }
-    }, [user]);
-
-    const submitHandler = async (e) => {
-        e.preventDefault();
-        try {
-            await updateUser({ userId, name, email, isAdmin });
-            toast.success('User updated successfully');
-            refetch();
-            navigate('/admin/userlist');
-        } catch (err) {
-            toast.error(err?.data?.message || err.error)
-        }
-    };
-
-  return <>
-    <Link to="/admin/userlist" className="btn btn-light my-3">
-        Go Back
-    </Link>
-    <FormContainer>
-        <h1>Edit User</h1>
-        {loadingUpdate && <Loader />}
-
-        {isLoading ? (
-        <Loader /> 
-        ) :  error ? (
-            <Message variant="danger">{error.data.message}</Message>
-        ) : (
-        <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name' className='my-2'>
-                <Form.Label>Name</Form.Label>
-                <Form.Control type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='email' className='my-2'>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type='email'
-                placeholder='Enter email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                ></Form.Control>
-            </Form.Group>
-
-           <Form.Group controlId='isAdmin' className='my-2'>
-                <Form.Check
-                    type='checkbox'
-                    label='Is Admin'
-                    checked={isAdmin}
-                    onChange={(e) => setIsAdmin(e.target.checked)}
-                ></Form.Check>
-           </Form.Group>
-
-            <Button
-            type='submit'
-            variant='primary'
-            className="my-2"
-            >
-                Update
-            </Button>
-        </Form>
-        )}
-
-    </FormContainer>
-  </>
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await updateUser({ userId, name, email, isAdmin });
+      toast.success('User updated successfully');
+      refetch();
+      navigate('/admin/userlist');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
+  if (isLoading) return <Loader />;
+  if (error) return <Message variant="danger">{error?.data?.message || error.error}</Message>;
+
+  return (
+    <>
+      <Link to="/admin/userlist" className="inline-block mb-6 px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-900 rounded-lg transition font-semibold">
+        ← Go Back
+      </Link>
+
+      <FormContainer>
+        <div className="bg-white rounded-lg shadow-md p-8 max-w-md mx-auto">
+          <h1 className="text-3xl font-bold mb-8 text-slate-900">Edit User</h1>
+
+          {loadingUpdate && <Loader />}
+
+          <form onSubmit={submitHandler} className="space-y-6">
+            <FormInput
+              label="Name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter name"
+              required
+            />
+
+            <FormInput
+              label="Email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email"
+              required
+            />
+
+            <label className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+              <input
+                type="checkbox"
+                checked={isAdmin}
+                onChange={(e) => setIsAdmin(e.target.checked)}
+                className="w-4 h-4"
+              />
+              <span className="text-slate-700 font-semibold">Is Admin</span>
+            </label>
+
+            <button
+              type="submit"
+              disabled={loadingUpdate}
+              className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg transition mt-6"
+            >
+              Update User
+            </button>
+          </form>
+        </div>
+      </FormContainer>
+    </>
+  );
+};
 
 export default UserEditScreen;

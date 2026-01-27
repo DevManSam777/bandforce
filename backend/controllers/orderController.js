@@ -33,9 +33,10 @@ const addOrderItems = asyncHandler(async (req, res) => {
         };
       });
   
-      // calculate prices
+      // calculate prices (extract state from shipping address)
+      const state = shippingAddress?.state || 'CA'; // Default to CA if no state provided
       const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
-        calcPrices(dbOrderItems);
+        await calcPrices(dbOrderItems, state);
   
       const order = new Order({
         orderItems: dbOrderItems,
@@ -49,6 +50,15 @@ const addOrderItems = asyncHandler(async (req, res) => {
       });
   
       const createdOrder = await order.save();
+
+      // Decrement product inventory
+      for (const item of dbOrderItems) {
+        const product = await Product.findById(item.product);
+        if (product) {
+          product.countInStock -= item.qty;
+          await product.save();
+        }
+      }
   
       res.status(201).json(createdOrder);
     }
@@ -91,7 +101,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   
     if (order) {
       // check the correct amount was paid
-      const paidCorrectAmount = order.totalPrice.toString() === value;
+      const paidCorrectAmount = Math.abs(order.totalPrice - parseFloat(value)) < 0.01;
       if (!paidCorrectAmount) throw new Error('Incorrect amount paid');
   
       order.isPaid = true;

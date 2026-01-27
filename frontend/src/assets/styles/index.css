@@ -1,53 +1,58 @@
-main {
-    min-height: 80vh;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  main {
+    @apply min-h-[80vh];
   }
-  
+
   .rating span {
-    margin: 0.1rem;
+    @apply mx-[0.1rem];
   }
-  
+
   .rating svg {
-    color: #f8e825;
+    @apply text-yellow-400;
   }
-  
+
   .rating-text {
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding-left: 0.5rem;
+    @apply text-xs font-semibold pl-2;
   }
-  
+
   .product-title {
-    height: 2.5em; /* Set a fixed height */
-    overflow: hidden; /* Hide overflow content */
-    text-overflow: ellipsis; /* Add ellipsis for long text */
-    white-space: nowrap; /* Prevent wrapping */
+    @apply h-[2.5em] overflow-hidden text-ellipsis whitespace-nowrap;
   }
-  
+
   table td,
   table th {
-    text-align: center;
+    @apply text-center;
   }
-  
+
   .review {
-    margin-top: 30px;
+    @apply mt-[30px];
   }
-  
+
   .review h2 {
-    font-size: 24px;
-    background: #f4f4f4;
-    padding: 10px;
-    border: 1px solid #ddd;
+    @apply text-2xl bg-gray-100 p-2.5 border border-gray-300;
   }
-  
+
   .review button {
-    margin-top: 10px;
+    @apply mt-2.5;
   }
-  
+
   .carousel-caption {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    @apply absolute w-full left-0 right-0 bottom-0 bg-black/50;
   }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  @apply outline-2 outline-offset-2 outline-cyan-500;
+}

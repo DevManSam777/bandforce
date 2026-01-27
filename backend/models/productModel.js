@@ -36,14 +36,25 @@ const productSchema = mongoose.Schema({
     image: {
         type: String,
         required: true,
-    },      
+    },
+    images: [{
+        url: {
+            type: String,
+            required: false,
+        },
+        alt: {
+            type: String,
+            default: 'Product image',
+        }
+    }],
     brand: {
         type: String,
         required: true,
     },
     category: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        default: null,
     },
     description: {
         type: String,
@@ -70,8 +81,30 @@ const productSchema = mongoose.Schema({
         required: true,
         default: 0,
     },
+    featured: {
+        type: Boolean,
+        default: false,
+    },
+    position: {
+        type: Number,
+        default: 0,
+    },
 }, {
     timestamps: true,
+});
+
+// Pre-save hook to ensure category is a valid ObjectId or null
+productSchema.pre('save', function(next) {
+    if (this.category && typeof this.category === 'string') {
+        // If category is a string, try to convert it to ObjectId
+        try {
+            this.category = mongoose.Types.ObjectId(this.category);
+        } catch (e) {
+            // If conversion fails, set to null
+            this.category = null;
+        }
+    }
+    next();
 });
 
 const Product = mongoose.model('Product', productSchema);
