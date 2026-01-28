@@ -43,7 +43,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Meta title="Welcome to BandForce" description="Shop the best electronics" keywords="electronics, shop" />
+      <Meta title="BandForce - Resistance Bands & Fitness Accessories" description="Resistance bands and fitness accessories for all fitness levels. Quality gear with fast US shipping." keywords="resistance bands, fitness accessories, workout equipment, strength training, exercise" />
       {!keyword ? (
         <ProductCarousel />
       ) : (

@@ -11,9 +11,9 @@ const Meta = ({ title, description, keywords }) => {
 }
 
 Meta.defaultProps = {
-    title: 'Welcome to BandForce',
-    description: 'We sell the best products for cheap',
-    keywords: 'electronics, buy electronics, cheap electronics',
+    title: 'BandForce - Resistance Bands & Fitness Accessories',
+    description: 'Resistance bands and fitness accessories for all fitness levels. Shop quality workout gear with fast US shipping.',
+    keywords: 'resistance bands, fitness accessories, workout equipment, strength training, exercise',
 };
 
 export default Meta;

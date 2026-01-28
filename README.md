@@ -1,6 +1,6 @@
 # BandForce
 
-Premium resistance bands and fitness accessories for serious athletes and fitness enthusiasts.
+Resistance bands and fitness accessories for all fitness levels.
 
 ## About BandForce
 

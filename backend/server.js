@@ -15,7 +15,7 @@ import taxRateRoutes from './routes/taxRateRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || (process.env.NODE_ENV === 'production' ? 3000 : 5000);
 
 connectDB();
 
