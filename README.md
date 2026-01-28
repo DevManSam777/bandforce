@@ -2,6 +2,8 @@
 
 Resistance bands and fitness accessories for all fitness levels.
 
+![BandForce](bandforce-assets/bandforce.gif)
+
 ## About BandForce
 
 BandForce is a full-featured eCommerce platform specializing in high-quality resistance bands and workout accessories.
