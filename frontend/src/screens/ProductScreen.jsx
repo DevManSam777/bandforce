@@ -189,7 +189,7 @@ const ProductScreen = () => {
           )}
 
           <div className="space-y-4">
-            {product.reviews && product.reviews.map((review) => (
+            {product.reviews && [...product.reviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((review) => (
               <div key={review._id} className="border-b border-gray-200 pb-4">
                 <div className="flex justify-between items-start">
                   <div>
