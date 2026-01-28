@@ -46,7 +46,7 @@ const Header = () => {
             <div className="h-16 w-16 rounded flex items-center justify-center">
               <img src={logo} alt="BandForce" className="h-14 w-14" />
             </div>
-            <span className="text-xl font-bold text-gray-900 hidden sm:inline">BandForce</span>
+            <span className="font-bold text-gray-900 text-lg sm:text-xl">BandForce</span>
           </Link>
 
           {/* Search Bar - Hidden on mobile */}
