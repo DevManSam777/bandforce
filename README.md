@@ -8,7 +8,6 @@ Resistance bands and fitness accessories for all fitness levels.
 
 BandForce is a full-featured eCommerce platform specializing in high-quality resistance bands and workout accessories.
 
-**Visit us:** https://bandforce.fly.dev
 
 ## Technology
 
@@ -31,24 +30,6 @@ BandForce is built with modern, production-ready technology:
 - Organized product categories
 - Dynamic shipping and tax calculation
 - Admin dashboard for store management
-
-## Shop
-
-Browse our full selection of resistance bands and fitness accessories at [bandforce.fly.dev](https://bandforce.fly.dev)
-
-## Questions?
-
-- **FAQ:** https://bandforce.fly.dev/faq
-- **Shipping Info:** https://bandforce.fly.dev/shipping-info
-- **Contact:** support@bandforce.fly.dev
-
-## Information
-
-- [About Us](https://bandforce.fly.dev/about)
-- [Privacy Policy](https://bandforce.fly.dev/privacy)
-- [Terms of Service](https://bandforce.fly.dev/terms)
-- [Shipping Information](https://bandforce.fly.dev/shipping-info)
-
 ---
 
 © 2026 BandForce. All rights reserved.
