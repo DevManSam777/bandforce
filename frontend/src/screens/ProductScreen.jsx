@@ -23,6 +23,10 @@ const ProductScreen = () => {
   const [editingReviewId, setEditingReviewId] = useState(null);
   const [editRating, setEditRating] = useState(0);
   const [editComment, setEditComment] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ratingFilter, setRatingFilter] = useState('all');
+  const [sortOrder, setSortOrder] = useState('newest');
+  const reviewsPerPage = 5;
 
   const { data: product, isLoading, refetch, error } = useGetProductDetailsQuery(productId);
   const [createReview, { isLoading: loadingProductReview }] = useCreateReviewMutation();
@@ -56,6 +60,7 @@ const ProductScreen = () => {
       setComment('');
       setEditRating(0);
       setEditComment('');
+      setCurrentPage(1);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -189,36 +194,144 @@ const ProductScreen = () => {
           )}
 
           <div className="space-y-4">
-            {product.reviews && [...product.reviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((review) => (
-              <div key={review._id} className="border-b border-gray-200 pb-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="font-bold text-slate-900">{review.name}</p>
-                    <Rating value={review.rating} />
-                    <p className="text-sm text-gray-500 mt-2">{review.createdAt.substring(0, 10)}</p>
+            {/* Filters */}
+            {product.reviews && product.reviews.length > 0 && (
+              <div className="flex flex-col gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 mb-4">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-900 mb-2">Filter by Rating:</label>
+                  <select
+                    value={ratingFilter}
+                    onChange={(e) => {
+                      setRatingFilter(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="w-full px-3 py-2 bg-white text-slate-900 border border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none"
+                  >
+                    <option value="all">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars & Up</option>
+                    <option value="3">3 Stars & Up</option>
+                    <option value="2">2 Stars & Up</option>
+                    <option value="1">1 Star & Up</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-semibold text-slate-900 mb-2">Sort by:</label>
+                  <select
+                    value={sortOrder}
+                    onChange={(e) => {
+                      setSortOrder(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="w-full px-3 py-2 bg-white text-slate-900 border border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none"
+                  >
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                  </select>
+                </div>
+              </div>
+            )}
+
+            {product.reviews && (() => {
+              let filteredReviews = [...product.reviews];
+              
+              // Apply rating filter
+              if (ratingFilter !== 'all') {
+                const minRating = parseInt(ratingFilter);
+                filteredReviews = filteredReviews.filter(review => review.rating >= minRating);
+              }
+              
+              // Apply sorting
+              filteredReviews.sort((a, b) => {
+                if (sortOrder === 'newest') {
+                  return new Date(b.createdAt) - new Date(a.createdAt);
+                } else {
+                  return new Date(a.createdAt) - new Date(b.createdAt);
+                }
+              });
+              
+              const totalPages = Math.ceil(filteredReviews.length / reviewsPerPage);
+              const startIndex = (currentPage - 1) * reviewsPerPage;
+              const paginatedReviews = filteredReviews.slice(startIndex, startIndex + reviewsPerPage);
+              
+              return (
+                <>
+                  <div className="text-xs text-gray-500 mb-2">
+                    Showing {paginatedReviews.length === 0 ? 0 : startIndex + 1}-{Math.min(startIndex + reviewsPerPage, filteredReviews.length)} of {filteredReviews.length} reviews
                   </div>
-                  {userInfo && (userInfo._id === review.user || userInfo.isAdmin) && (
-                    <div className="flex gap-2">
-                      {userInfo._id === review.user && (
-                        <button
-                          onClick={() => handleEditReview(review)}
-                          className="text-blue-600 hover:text-blue-800 text-sm font-semibold"
-                        >
-                          Edit
-                        </button>
-                      )}
+                  
+                  {paginatedReviews.length === 0 ? (
+                    <Message>No reviews match your filters</Message>
+                  ) : (
+                    paginatedReviews.map((review) => (
+                    <div key={review._id} className="border-b border-gray-200 pb-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="font-bold text-slate-900">{review.name}</p>
+                          <Rating value={review.rating} />
+                          <p className="text-sm text-gray-500 mt-2">{review.createdAt.substring(0, 10)}</p>
+                        </div>
+                        {userInfo && (userInfo._id === review.user || userInfo.isAdmin) && (
+                          <div className="flex gap-2">
+                            {userInfo._id === review.user && (
+                              <button
+                                onClick={() => handleEditReview(review)}
+                                className="text-blue-600 hover:text-blue-800 text-sm font-semibold"
+                              >
+                                Edit
+                              </button>
+                            )}
+                            <button
+                              onClick={() => handleDeleteReview(review._id)}
+                              className="text-red-600 hover:text-red-800 text-sm font-semibold"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      <p className="text-gray-800 mt-2 leading-relaxed">{review.comment}</p>
+                    </div>
+                  ))
+                  )}
+                  
+                  {totalPages > 1 && (
+                    <div className="flex justify-center gap-2 mt-6 pt-4 border-t border-gray-200">
                       <button
-                        onClick={() => handleDeleteReview(review._id)}
-                        className="text-red-600 hover:text-red-800 text-sm font-semibold"
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 font-semibold text-sm"
                       >
-                        Delete
+                        Previous
+                      </button>
+                      
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => setCurrentPage(page)}
+                          className={`px-3 py-1 rounded-lg font-semibold text-sm ${
+                            currentPage === page
+                              ? 'bg-cyan-500 text-white'
+                              : 'bg-gray-200 hover:bg-gray-300'
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      ))}
+                      
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 font-semibold text-sm"
+                      >
+                        Next
                       </button>
                     </div>
                   )}
-                </div>
-                <p className="text-gray-800 mt-2 leading-relaxed">{review.comment}</p>
-              </div>
-            ))}
+                </>
+              );
+            })()}
           </div>
         </div>
 
