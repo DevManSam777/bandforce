@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import "@devmansam/back-to-top";
 
 const App = () => {
   const location = useLocation();
@@ -34,6 +35,10 @@ const App = () => {
         pauseOnHover
         theme="light"
       />
+
+      <back-to-top
+        position="right"
+      ></back-to-top>
     </div>
   );
 };
