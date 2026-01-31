@@ -19,7 +19,7 @@ const ProductCarousel = () => {
   }, [isAutoplay, products]);
 
   if (isLoading) return null;
-  if (error) return <Message variant="danger">{error}</Message>;
+  if (error) return <Message variant="danger">{error?.data?.message || error?.error || 'Failed to load products'}</Message>;
   if (!products || products.length === 0) return null;
 
   const current = products[currentIndex];
