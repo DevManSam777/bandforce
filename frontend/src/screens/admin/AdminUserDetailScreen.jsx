@@ -17,12 +17,14 @@ const AdminUserDetailScreen = () => {
 
   return (
     <>
-      <Link
-        to="/admin/userlist"
-        className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-900 rounded-lg transition font-semibold"
-      >
-        <FaArrowLeft /> Go Back
-      </Link>
+      <div className="mb-6 flex items-center gap-4">
+        <Link
+          to="/admin/userlist"
+          className="text-cyan-600 hover:text-cyan-700 font-semibold flex items-center gap-2"
+        >
+          <FaArrowLeft /> Back
+        </Link>
+      </div>
 
       {isLoading ? (
         <Loader />

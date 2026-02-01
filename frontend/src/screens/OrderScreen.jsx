@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { FaArrowLeft } from 'react-icons/fa';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import {
@@ -13,6 +14,7 @@ import {
 } from '../slices/ordersApiSlice';
 
 const OrderScreen = () => {
+  const navigate = useNavigate();
   const { id: orderId } = useParams();
 
   const { data: order, refetch, error, isLoading } = useGetOrderDetailsQuery(orderId);
@@ -80,6 +82,14 @@ const OrderScreen = () => {
 
   return (
     <>
+      <div className="mb-6 flex items-center gap-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-cyan-600 hover:text-cyan-700 font-semibold flex items-center gap-2"
+        >
+          <FaArrowLeft /> Back
+        </button>
+      </div>
       <h1 className="text-xl md:text-3xl font-bold mb-6 text-slate-900 break-words">Order {order._id}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
