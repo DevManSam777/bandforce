@@ -37,12 +37,14 @@ const CartScreen = () => {
   const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2);
   const shippingPrice = (itemsPrice > 100 ? 0 : 10).toFixed(2);
   
-  // Get tax rate from state
-  const state = cart.shippingAddress?.state || 'CA';
-  const taxRate = STATE_TAX_RATES[state] || 0;
-  const taxPrice = (itemsPrice * taxRate).toFixed(2);
+  // Get tax rate from state - only calculate if address is provided
+  const state = cart.shippingAddress?.state;
+  const taxRate = state ? (STATE_TAX_RATES[state] || 0) : null;
+  const taxPrice = taxRate !== null ? (itemsPrice * taxRate).toFixed(2) : null;
   
-  const totalPrice = (parseFloat(itemsPrice) + parseFloat(shippingPrice) + parseFloat(taxPrice)).toFixed(2);
+  const totalPrice = taxPrice !== null 
+    ? (parseFloat(itemsPrice) + parseFloat(shippingPrice) + parseFloat(taxPrice)).toFixed(2)
+    : (parseFloat(itemsPrice) + parseFloat(shippingPrice)).toFixed(2);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -116,10 +118,17 @@ const CartScreen = () => {
               <span>Shipping:</span>
               <span>${shippingPrice}</span>
             </div>
-            <div className="flex justify-between">
-              <span>Tax ({(taxRate * 100).toFixed(2)}%):</span>
-              <span>${taxPrice}</span>
-            </div>
+            {taxRate !== null ? (
+              <div className="flex justify-between">
+                <span>Tax ({(taxRate * 100).toFixed(2)}%):</span>
+                <span>${taxPrice}</span>
+              </div>
+            ) : (
+              <div className="flex justify-between text-gray-500">
+                <span>Tax:</span>
+                <span>Calculated at checkout</span>
+              </div>
+            )}
           </div>
 
           <div className="flex justify-between font-bold text-lg mt-4 mb-6 text-slate-900">
